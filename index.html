@@ -7,15 +7,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Olums Inc</title>
     <script src="https://js.paystack.co/v2/inline.js"></script>
+
+    <style>
+        #pay-button {
+            background-color: #00b9ff;
+            border-radius: 4px;
+            color: #fff;
+            display: inline-block;
+            font-size: 18px;
+            width: 350px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+    </style>
 </head>
 
 <body>
-    <div id="paystack-apple-pay"></div>
-    <button id="paystack-other-channels">More payment options</button>
+    <button id="pay-button">Pay</button>
 </body>
 
 <script>
-    const paystackPop = new PaystackPop();
+    const pay = document.getElementById('pay-button');
+
+    pay.addEventListener('click', function () {
+        payWithPaystack()
+    });
+
+    const paystackPop = new PaystackPop({
+        onSuccess(response) {
+            console.log('response', response);
+        },
+        onError(error) {
+            console.log('error', error)
+        },
+        onCancel() {
+            console.log('cancelled')
+        },
+        onElementsMount(elements) {
+            console.log('elements')
+        }
+    });
     async function payWithPaystack() {
         await paystackPop.checkout({
             key: 'pk_live_6179d673f722900860a18c371108872d00d064b3',

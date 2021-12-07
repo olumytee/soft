@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olums Inc</title>
+    <script src="https://js.paystack.co/v2/inline.js"></script>
+</head>
+
+<body>
+    <div id="paystack-apple-pay"></div>
+    <button id="paystack-other-channels">More payment options</button>
+</body>
+
+<script>
+    const paystackPop = new PaystackPop();
+    async function payWithPaystack() {
+        await paystackPop.checkout({
+            key: 'pk_live_6179d673f722900860a18c371108872d00d064b3',
+            email: 'olumide@paystack.com.com',
+            amount: 10000
+        });
+    }
+</script>
+
+</html>
